@@ -616,7 +616,7 @@ $RECYCLE.BIN/
 data/
 examples/data
 /examples/results/
-.DS_Store
-.DS_Store
+*.DS_Store
+*.idea
 
 *.pdf
