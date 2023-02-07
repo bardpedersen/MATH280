@@ -68,13 +68,15 @@ x0_realtek = np.ones(n_realtek)/n_realtek  # initial probabilities: 1/n for ever
 N_realtek = 1000  # number of iterations
 q_realtek = pow_method(P_realtek, x0_realtek, N_realtek)
 
-answer_name = np.argsort(q_realtek)
-web_name = np.loadtxt('keyvalues.txt', dtype=str)
-for k in answer_name[0:5]:
-    print(web_name[k])
 
+web_name = np.loadtxt('keyvalues.txt', dtype=str)
+dict1 = dict(zip(web_name[:, 1], q_realtek))
+sort_dict = dict(sorted(dict1.items(), key=lambda item: item[1]))
+for x in list(reversed(list(sort_dict)))[0:5]:
+    print(x)
 
 # %% Task 4 a)
+
 
 def pow_method2(p1, v0, tol):
     """
@@ -88,17 +90,17 @@ def pow_method2(p1, v0, tol):
             i:   number of iteration to satisfy tolerance
     """
     p_matrix = p1
-    x = v0
+    x_ = v0
     run = True
     i = 0
     while run:
         i += 1
         p_matrix = np.matmul(p_matrix, p1)
-        x1 = p_matrix.dot(x)
-        ans = abs(x1 - x)
+        x1 = p_matrix.dot(x_)
+        ans = abs(x1 - x_)
         if ans.all() <= tol:
             run = False
-        x = x1
+        x_ = x1
 
     v = p_matrix.dot(v0)
     return v, i
@@ -107,10 +109,10 @@ def pow_method2(p1, v0, tol):
 tolerance = 0.000001
 q_realtek2, number_of_N = pow_method2(P_realtek, x0_realtek, tolerance)
 print('it tok matrix to the power of: ', number_of_N, 'to get the right number')
-answer_name2 = np.argsort(q_realtek2)
-web_name = np.loadtxt('keyvalues.txt', dtype=str)
-for k in answer_name2[0:5]:
-    print(web_name[k])
+dict1 = dict(zip(web_name[:, 1], q_realtek2))
+sort_dict = dict(sorted(dict1.items(), key=lambda item: item[1]))
+for x in list(reversed(list(sort_dict)))[0:5]:
+    print(x)
 
 
 # %% Task 4 b)
@@ -171,9 +173,9 @@ def adjustment2(a, prob):
 Probability = 0.85
 P_realtek2 = transition_matrix2(A_realtek)
 answer_adjustment2 = adjustment2(P_realtek2, Probability)
-
 q_realtek21, number_of_N2 = pow_method2(P_realtek2, x0_realtek, tolerance)
 print('it tok matrix to the power of: ', number_of_N2, 'to get the right number')
-answer_name21 = np.argsort(q_realtek21)
-for k in answer_name21[0:5]:
-    print(web_name[k])
+dict1 = dict(zip(web_name[:, 1], q_realtek21))
+sort_dict = dict(sorted(dict1.items(), key=lambda item: item[1]))
+for x in list(reversed(list(sort_dict)))[0:5]:
+    print(x)
