@@ -5,6 +5,7 @@ import numpy as np
 
 A = np.loadtxt('adjacency_example.txt', dtype=float)
 print(A)
+print('------------------')
 
 
 def transition_matrix(a):
@@ -55,8 +56,8 @@ n = P.shape[0]  # The number of nodes
 x0 = np.ones(n)/n  # initial probabilities: 1/n for every node
 N = 1000  # number of iterations
 
-q = pow_method(P, x0, N)
-print(q)
+print(pow_method(P, x0, N))
+print('------------------')
 
 
 # %% Task 3
@@ -74,6 +75,7 @@ dict1 = dict(zip(web_name[:, 1], q_realtek))
 sort_dict = dict(sorted(dict1.items(), key=lambda item: item[1]))
 for x in list(reversed(list(sort_dict)))[0:5]:
     print(x)
+print('------------------')
 
 # %% Task 4 a)
 
@@ -113,9 +115,10 @@ dict1 = dict(zip(web_name[:, 1], q_realtek2))
 sort_dict = dict(sorted(dict1.items(), key=lambda item: item[1]))
 for x in list(reversed(list(sort_dict)))[0:5]:
     print(x)
-
+print('------------------')
 
 # %% Task 4 b)
+
 
 def transition_matrix2(a):
     """
@@ -179,3 +182,4 @@ dict1 = dict(zip(web_name[:, 1], q_realtek21))
 sort_dict = dict(sorted(dict1.items(), key=lambda item: item[1]))
 for x in list(reversed(list(sort_dict)))[0:5]:
     print(x)
+print('------------------')
