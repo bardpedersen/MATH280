@@ -99,8 +99,8 @@ def pow_method2(p1, v0, tol):
         i += 1
         p_matrix = np.matmul(p_matrix, p1)
         x1 = p_matrix.dot(x_)
-        ans = abs(x1 - x_)
-        if ans.all() <= tol:
+        ans = np.linalg.norm(x1 - x_)
+        if ans <= tol:
             run = False
         x_ = x1
 
