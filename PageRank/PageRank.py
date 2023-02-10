@@ -95,12 +95,13 @@ def pow_method2(p1, v0, tol):
     x_ = v0
     run = True
     i = 0
+
     while run:
         i += 1
         p_matrix = np.matmul(p_matrix, p1)
         x1 = p_matrix.dot(x_)
         ans = np.linalg.norm(x1 - x_)
-        if ans <= tol:
+        if ans < tol:
             run = False
         x_ = x1
 
@@ -108,7 +109,7 @@ def pow_method2(p1, v0, tol):
     return v, i
 
 
-tolerance = 0.000001
+tolerance = 10**(-15)
 q_realtek2, number_of_N = pow_method2(P_realtek, x0_realtek, tolerance)
 print('it tok matrix to the power of: ', number_of_N, 'to get the right number')
 dict1 = dict(zip(web_name[:, 1], q_realtek2))
